@@ -1,0 +1,51 @@
+PROG: 	EQU	$7000
+DATA: 	EQU	$4000
+	
+	ORG 	DATA
+BUF1:	DS.B	15
+	ORG	DATA+$10
+BUF2:	DS.B	15
+	ORG	DATA+$20
+BUF3:	DS.B	15
+	ORG	DATA+$30
+BUF4:	DS.B	15
+	ORG 	PROG
+	ldaa	#15
+	
+	ldx	#DATA1
+	ldy	#BUF1
+loop:	movb	1,x+,1,y+
+	dbne	a,loop
+	ldaa	#15
+	
+	ldx	#DATA2
+	ldy	#BUF2
+loop2:	movb	1,x+,1,y+
+	dbne	a,loop2
+	ldaa	#15
+	
+ 	ldx 	#BUF1
+	ldy 	#BUF3
+loop3:	movb	1,x+,1,y+
+	dbne	a,loop3
+	ldaa	#15
+
+ 	ldx	#BUF2
+	ldy	#BUF3
+loop4:	ldab	1,x+
+	addb	0,y
+	stab	1,y+
+	dbne	a,loop4
+
+	ldaa	#15
+	ldab	#$20
+	ldx	#BUF3
+	ldy	#BUF4
+loop5:	eorb	1,x+
+	stab	1,y+
+	ldab	#$20
+	dbne	a,loop5
+	swi
+DATA1: 	DC.B	$48, $41, $56, $45,$20,$41,$20,$47, $4F, $4F, $44, $20, $44, $41, $59
+DATA2: 	DC.B	$0F, $04, $F6, $FE, $2F, $0C, $25, $D9, $05, $00, $DC, $2C, $1D, $21, $1A
+	
