@@ -1,0 +1,40 @@
+;Example Code 1
+;Write an instruction sequence to add 5 to the data in memory location $20 and store it in memory location $20 
+
+ldaa  #5
+adda  $20
+sta   $20
+
+
+;Example Code 2
+;Write an instruction sequence to add the byte in memory location pointed to by the X register and the following byte
+;and place the sume in the memory location pointed to by Y
+
+lddd  0,X
+aba
+std   0,Y 
+
+
+;Example Code 3 
+;Write an instruction sequence to add the numbers stored at $1000, $1001, $1002 and store them in location $1004
+
+ldaa  $1000
+adda  $1001
+adda  $1002
+sta   $1004 
+
+;Example Code 4
+;Write an instruction sequnece to swap the two bytes stored at locations $1000 and $1001 
+
+lddd  $1000
+exg   A, B
+std   $1000
+
+
+;Example Code 5
+;Write an instruction sequence to add the 16 bit data in memory locations $1000 and $1001 to the 16 bit data pointed 
+;to by register X and store the result in memory locations $2000 and $2001 
+
+lddd  $1000
+addd  0,X
+std   $2000
