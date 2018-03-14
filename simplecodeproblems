@@ -38,3 +38,35 @@ std   $1000
 lddd  $1000
 addd  0,X
 std   $2000
+
+;Example Code 6
+;Write a program starting at memory location $1500 to subtract the contents of memory location $1005 from the sum of memory locations $1000
+;$1000 and $1002 and store the difference in $1010
+
+ORG   $1500
+ldaa  $1000
+adda  $1002 
+suba  $1005
+staa  $1010
+bgnd        ;break to debugger
+END
+
+;Example Code 7
+;Write an instruction sequence to multiply (unsigned) register X by register Y and store result in $1000~$1003
+
+tfr   x,d
+emul  
+sty   $1000; save upper 16 bits of product
+std   $1002;  save lower 16 bits of product 
+
+
+;Example Code 8 
+;Multiply the unsigned 16 bit number in locations $1000L$1001 by 1.414 truncating result to nearest integer
+
+ldd $1000
+ldy #1414
+emul
+ldx  #1000
+ediv  
+sty
+  
