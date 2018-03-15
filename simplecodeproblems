@@ -70,3 +70,13 @@ ldx  #1000
 ediv  
 sty
   
+;Example Code 9 
+;Write an instruction sequence that will form the absolute value of a signed 8 bit integer stored in location $1000 and store the result in location 
+;$1004 
+
+      ldaa  $1000
+      tsta
+      bpl   pos
+      nega
+pos:  staa  $1004
+
