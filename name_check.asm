@@ -13,7 +13,7 @@ name_check:   pshy
               pshx
               psha
               clrb 
-loop:         ldaa  0, Y+       ;load accumulator a with what Y is pointing to 
+loop:         ldaa  0, Y         ;load accumulator a with what Y is pointing to 
               cmpa  #0
               beq   done        ;Check for NULL 
               cmpa  #$40        ;Check if it is is not letters
