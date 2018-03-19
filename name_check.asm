@@ -34,3 +34,39 @@ loop:         ldaa  0, Y         ;load accumulator a with what Y is pointing to
               pulx 
               puly
               rts
+
+;a second requirement of the language is that variables names be no more than 10 characters in length 
+;modify your subroutine to also check the length of the name. If the max length is exceeded, the return code in accumulator
+;B should be $FF 
+
+
+name_check:   pshy
+              pshx
+              psha
+              clrb 
+loop:         ldaa  0, Y         ;load accumulator a with what Y is pointing to 
+              cmpa  #0
+              beq   done        ;Check for NULL 
+              inx               ;increment X 
+              cpx   #11
+              beq   gr10
+              cmpa  #$40        ;Check if it is is not letters
+              bhi   word
+              incb
+              bra   loop        ;branch always to loop 
+word          cmpa  #$5B
+              blo   loop
+              cmpa  #$60
+              bhi   lowercase
+              incb              ;add number 
+              bra   loop
+lowercase:    cmpa  #$7A
+              bls   loop
+              incb
+              bra   loop
+gr10:         ldab  #$FF
+              bra   done
+done:         pula  
+              pulx 
+              puly
+              rts
