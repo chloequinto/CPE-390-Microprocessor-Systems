@@ -23,5 +23,5 @@ loop:   ldaa  i
         sty    sum
         inc     i
         bra     loop
-doneL   bgnd
+doneL:  bgnd
         END
